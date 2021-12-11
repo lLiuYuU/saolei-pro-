@@ -1,29 +1,41 @@
-body {
-    width: 100vw;
-    height: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.game-pane {
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(16, 207, 207);
-    box-shadow: 2px 2px 2px rgb(185, 64, 64);
-}
-
-.cell {
-    background-color: rgb(156, 154, 154);
-    width: 1.5em;
-    height: 1.5em;
-    border-style: outset;
-    text-align: center;
-    user-select: none;
-}
-
-.clear {
-    border-style: solid;
-    border-color: #eee;
-    background-color: #eee;
-}
+    body {
+        width: 100vw;
+        height: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .game-pane {
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgb(16, 207, 207);
+        box-shadow: 2px 2px 2px rgb(185, 64, 64);
+    }
+    
+    .cell {
+        background-color: rgb(156, 154, 154);
+        width: 1.5em;
+        height: 1.5em;
+        border-style: outset;
+        text-align: center;
+        user-select: none;
+    }
+    
+    .clear {
+        border-style: solid;
+        border-color: #eee;
+        background-color: #eee;
+    }
+    
+    .cell.landmine {
+        background-color: orange;
+    }
+    
+    .cell.landmine.exploded {
+        background-color: red;
+    }
+    
+    .cell.landmine.success {
+        background-color: green;
+    }

@@ -9,7 +9,7 @@ function renderBoard(numRows, numCols, grid) {
             grid[i][j].cellEl = cellEl;
 
             if (grid[i][j].count === -1) {
-                cellEl.innerText = "*";
+                cellEl.innerText = "  ";
 
             } else {
                 cellEl.innerText = grid[i][j].count;
@@ -19,13 +19,25 @@ function renderBoard(numRows, numCols, grid) {
 
 
 
-            cellEl.addEventListener("click", (e) => {
-                if (grid[i][j].count === 0) {
 
+            cellEl.addEventListener("click", (e) => {
+                if (grid[i][j].count === -1) {
+                    explode(grid, i, j, numRows, numCols)
+                    return;
+                }
+
+                if (grid[i][j].count === 0) {
                     searchClearArea(grid, i, j, numCols, numRows);
+                } else if (grid[i][j].count > 0) {
+                    grid[i][j].clear = true;
+                    cellEl.classList.add("clear");
+                    grid[i][j].cellEl.innerText = grid[i][j].count;
+
+
 
                 }
-                cellEl.classList.add("clear");
+                checkAllClear(grid);
+
 
             });
 
@@ -78,6 +90,8 @@ function initialize(numRows, numCols, numMines) {
         mines.push([row, col])
     }
 
+
+
     for (let [row, col] of mines) {
         console.log("mine:", row, col);
         for (let [drow, dcol] of directions) {
@@ -120,17 +134,21 @@ function initialize(numRows, numCols, numMines) {
 
 
 function searchClearArea(grid, row, col, numRows, numCols) {
+    let gridCell = grid[row][col];
+    gridCell.clear = true;
+    gridCell.cellEl.classList.add("clear");
+
 
 
     for (let [drow, dcol] of directions) {
         let cellRow = row + drow;
         let cellCol = col + dcol;
+        console.log(cellRow, cellCol, numRows, numCols);
         if (cellRow < 0 || cellRow >= numRows || cellCol < 0 || cellCol >= numCols) {
             continue;
         }
-
-
         let gridCell = grid[cellRow][cellCol];
+        console.log(cellRow, cellCol, gridCell);
 
         if (!gridCell.clear) {
             gridCell.clear = true;
@@ -138,10 +156,57 @@ function searchClearArea(grid, row, col, numRows, numCols) {
             if (gridCell.count === 0) {
                 searchClearArea(grid, cellRow, cellCol, numCols, numRows);
 
+            } else if (gridCell.count > 0) {
+                gridCell.cellEl.innerText = gridCell.count;
             }
         }
 
     }
+}
+
+function explode(grid, row, col, numRows, numCols) {
+    grid[row][col].cellEl.classList.add("exploded");
+
+    for (let cellRow = 0; cellRow < numRows; cellRow++) {
+        for (let cellCol = 0; cellCol < numCols; cellCol++) {
+            let cell = grid[cellRow][cellCol];
+
+            cell.clear = true;
+            cell.cellEl.classList.add('clear');
+
+            if (cell.count === -1) {
+                cell.cellEl.classList.add('landmine');
+            }
+        }
+    }
+}
+
+
+function checkAllClear(grid) {
+    for (let row = 0; row < grid.length; row++) {
+        let gridRow = grid[row];
+        for (let col = 0; col < gridRow.length; col++) {
+            let cell = gridRow[col];
+            if (cell.count !== -1 && !cell.clear) {
+                return false;
+            }
+        }
+    }
+
+    for (let row = 0; row < grid.length; row++) {
+        let gridRow = grid[row];
+        for (let col = 0; col < gridRow.length; col++) {
+            let cell = gridRow[col];
+
+            if (cell.count === -1) {
+                cell.cellEl.classList.add('landmine');
+            }
+
+            cell.cellEl.classList.add("success");
+        }
+    }
+
+    return true;
 }
 
 let grid = initialize(9, 9, 15);

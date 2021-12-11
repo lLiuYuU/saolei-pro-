@@ -136,7 +136,7 @@ function searchClearArea(grid, row, col, numRows, numCols) {
             gridCell.clear = true;
             gridCell.cellEl.classList.add("clear");
             if (gridCell.count === 0) {
-                searchClearArea(grid, i, j);
+                searchClearArea(grid, cellRow, cellCol, numCols, numRows);
 
             }
         }

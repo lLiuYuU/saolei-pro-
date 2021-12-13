@@ -1,5 +1,9 @@
 function renderBoard(numRows, numCols, grid) {
-    let boardE1 = document.querySelector("#board");
+
+
+    let boardEl = document.querySelector("#board");
+
+
 
     for (let i = 0; i < numRows; i++) {
         let trEl = document.createElement("tr");
@@ -8,17 +12,9 @@ function renderBoard(numRows, numCols, grid) {
             cellEl.className = "cell";
             grid[i][j].cellEl = cellEl;
 
-            if (grid[i][j].count === -1) {
-                cellEl.innerText = "  ";
-
-            } else {
-                cellEl.innerText = grid[i][j].count;
+            this.parent.oncontextmenu = function() {
+                return false;
             }
-
-
-
-
-
 
             cellEl.addEventListener("click", (e) => {
                 if (grid[i][j].count === -1) {
@@ -47,9 +43,24 @@ function renderBoard(numRows, numCols, grid) {
 
             trEl.append(tdEl);
         }
-        boardE1.append(trEl);
+        boardEl.append(trEl);
     }
 }
+
+
+
+renderBoard.prototype.setDegree = function() {
+    var button = document.getElementsByTagName("button");
+
+    addEvent(button[0], "click", function() {
+        var cellEl = new cellEl(10, 10, 10);
+
+    });
+    addEvent(button[1], "click", function() {
+        var cellEl = new cellEl(16, 16, 50);
+    });
+}
+
 
 
 
@@ -65,7 +76,11 @@ const directions = [
     [1, 1],
 ]
 
+
+
 function initialize(numRows, numCols, numMines) {
+
+    this.surplusMine = numMines;
     let grid = new Array(numRows);
     for (let i = 0; i < numRows; i++) {
         grid[i] = new Array(numCols);
@@ -83,8 +98,6 @@ function initialize(numRows, numCols, numMines) {
         let cellSn = Math.trunc(Math.random() * numRows * numCols);
         let row = Math.trunc(cellSn / numCols);
         let col = cellSn % numCols;
-
-        console.log(cellSn, row, col);
 
         grid[row][col].count = -1;
         mines.push([row, col])
@@ -123,7 +136,7 @@ function initialize(numRows, numCols, numMines) {
 
                 }
             }
-            console.log(row, col, row + drow, col + dcol);
+
 
         }
     }
@@ -143,7 +156,7 @@ function searchClearArea(grid, row, col, numRows, numCols) {
     for (let [drow, dcol] of directions) {
         let cellRow = row + drow;
         let cellCol = col + dcol;
-        console.log(cellRow, cellCol, numRows, numCols);
+
         if (cellRow < 0 || cellRow >= numRows || cellCol < 0 || cellCol >= numCols) {
             continue;
         }
@@ -163,6 +176,8 @@ function searchClearArea(grid, row, col, numRows, numCols) {
 
     }
 }
+
+
 
 function explode(grid, row, col, numRows, numCols) {
     grid[row][col].cellEl.classList.add("exploded");
@@ -209,5 +224,5 @@ function checkAllClear(grid) {
     return true;
 }
 
-let grid = initialize(9, 9, 15);
+let grid = initialize(9, 9, 16);
 renderBoard(9, 9, grid);

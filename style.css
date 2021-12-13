@@ -1,41 +1,81 @@
-    body {
-        width: 100vw;
-        height: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .game-pane {
-        border-style: solid;
-        border-width: 1px;
-        border-color: rgb(16, 207, 207);
-        box-shadow: 2px 2px 2px rgb(185, 64, 64);
-    }
-    
-    .cell {
-        background-color: rgb(156, 154, 154);
-        width: 1.5em;
-        height: 1.5em;
-        border-style: outset;
-        text-align: center;
-        user-select: none;
-    }
-    
-    .clear {
-        border-style: solid;
-        border-color: #eee;
-        background-color: #eee;
-    }
-    
-    .cell.landmine {
-        background-color: orange;
-    }
-    
-    .cell.landmine.exploded {
-        background-color: red;
-    }
-    
-    .cell.landmine.success {
-        background-color: green;
-    }
+        body {
+            width: 100vw;
+            height: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        table {
+            border-spacing: 1px;
+            background-color: #929196;
+            margin: 0 auto;
+        }
+        
+        .tips {
+            color: red;
+            font-size: 16px;
+        }
+        
+        .game-pane {
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgb(16, 207, 207);
+            box-shadow: 2px 2px 2px rgb(185, 64, 64);
+        }
+        
+        .game-pane button {
+            padding: 5px 15px;
+            background-color: #02a4ad;
+            color: #fff;
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .cell {
+            background-color: rgb(156, 154, 154);
+            width: 1.5em;
+            height: 1.5em;
+            border-style: outset;
+            text-align: center;
+            user-select: none;
+        }
+        
+        .clear {
+            border-style: solid;
+            border-color: #eee;
+            background-color: #eee;
+        }
+        
+        .cell.landmine {
+            background-color: orange;
+        }
+        
+        .cell.landmine.exploded {
+            background-color: red;
+        }
+        
+        .cell.landmine.success {
+            background-color: green;
+        }
+        
+        .grid {
+            margin: auto;
+        }
+        
+        .flag {
+            background: #ccc url(../扫雷pro/flag.png)no-repeat center;
+            background-size: cover;
+        }
+        
+        .mine {
+            background: #ccc url(../扫雷pro/boom.png)no-repeat center;
+            background-size: cover;
+        }
+        
+        td.one {
+            background-color: aqua;
+            border-color: aqua;
+            color: burlywood;
+        }

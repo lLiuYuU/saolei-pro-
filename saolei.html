@@ -2,14 +2,28 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
+
 </head>
 
 <body>
-    <div class="game-pane">
+    <div class="game-pane" id="game-pane">
         <table id="board">
+            <header class="header">
+                <button class="active">初级</button>
+                <button>中级</button>
+                <button>高级</button>
+                <button>重新开始</button>
+            </header>
+            <footer class="footer">剩余雷数量：<span id="surplusMine"></span>
+                <div>
+                    <span class="tips">左键扫雷，右键插旗，再次点击右键拔旗</span>
 
+                </div>
+            </footer>
         </table>
     </div>
+
+
     <script src="script.js"></script>
 </body>
 

@@ -1,8 +1,9 @@
-function renderBoard(numRows, numCols, grid) {
+function renderBoard(numRows, numCols, grid, numMines) {
 
 
     let boardEl = document.querySelector("#board");
-
+    this.surplusMine = numMines;
+    this.allRight = false;
 
 
     for (let i = 0; i < numRows; i++) {
@@ -15,6 +16,8 @@ function renderBoard(numRows, numCols, grid) {
             this.parent.oncontextmenu = function() {
                 return false;
             }
+
+
 
             cellEl.addEventListener("click", (e) => {
                 if (grid[i][j].count === -1) {
@@ -42,24 +45,12 @@ function renderBoard(numRows, numCols, grid) {
             tdEl.append(cellEl);
 
             trEl.append(tdEl);
+
         }
         boardEl.append(trEl);
     }
 }
 
-
-
-renderBoard.prototype.setDegree = function() {
-    var button = document.getElementsByTagName("button");
-
-    addEvent(button[0], "click", function() {
-        var cellEl = new cellEl(10, 10, 10);
-
-    });
-    addEvent(button[1], "click", function() {
-        var cellEl = new cellEl(16, 16, 50);
-    });
-}
 
 
 
@@ -101,6 +92,9 @@ function initialize(numRows, numCols, numMines) {
 
         grid[row][col].count = -1;
         mines.push([row, col])
+        this.numMinesDom = document.querySelector('.mineNum');
+        this.numMinesDom.innerHTML = this.surplusMine;
+
     }
 
 
@@ -192,6 +186,7 @@ function explode(grid, row, col, numRows, numCols) {
             if (cell.count === -1) {
                 cell.cellEl.classList.add('landmine');
             }
+
         }
     }
 }
@@ -217,6 +212,7 @@ function checkAllClear(grid) {
                 cell.cellEl.classList.add('landmine');
             }
 
+
             cell.cellEl.classList.add("success");
         }
     }
@@ -226,3 +222,30 @@ function checkAllClear(grid) {
 
 let grid = initialize(9, 9, 16);
 renderBoard(9, 9, grid);
+
+/*
+var btns = document.getElementsByTagName('button');
+var cell = null;
+var ln = 0;
+var arr = [
+    [9, 9, 10],
+    [16, 16, 40],
+    [28, 28, 99]
+];
+for (let i = 0; i < btns.length - 1; i++) {
+    btns[i].onclick = function() {
+        btns[ln].className = ' ';
+        this.className = 'active';
+        cell = new renderBoard(arr[i][0], arr[i][1], arr[i][2]);
+        cell.init();
+        ln = i;
+    }
+}
+btns[0].onclick();
+btns[3].onclick = function() {
+    for (var i = 0; i < btns.length - 1; i++) {
+        if (btns[i].className == 'active') {
+            btns[i].onclick();
+        }
+    }
+}*/

@@ -1,4 +1,5 @@
-function renderBoard(numRows, numCols, grid, numMines) {
+function renderBoard(numRows, numCols, grid, numMines) { //numRows numCols行列
+
 
 
     let boardEl = document.querySelector("#board");
@@ -12,6 +13,18 @@ function renderBoard(numRows, numCols, grid, numMines) {
             let cellEl = document.createElement("div");
             cellEl.className = "cell";
             grid[i][j].cellEl = cellEl;
+            document.onmouseup = function(e) {
+                if (e.button === 2) {
+                    cellEl.className = "flag";
+
+                    this.surplusMine -= 1;
+
+                }
+
+                this.surplusMine += 1;
+
+            }
+
 
             this.parent.oncontextmenu = function() {
                 return false;
@@ -19,11 +32,17 @@ function renderBoard(numRows, numCols, grid, numMines) {
 
 
 
+
+
+
             cellEl.addEventListener("click", (e) => {
                 if (grid[i][j].count === -1) {
                     explode(grid, i, j, numRows, numCols)
-                    return;
+
+                    return alert("游戏结束！,点击查看结果");
                 }
+
+
 
                 if (grid[i][j].count === 0) {
                     searchClearArea(grid, i, j, numCols, numRows);
@@ -31,12 +50,8 @@ function renderBoard(numRows, numCols, grid, numMines) {
                     grid[i][j].clear = true;
                     cellEl.classList.add("clear");
                     grid[i][j].cellEl.innerText = grid[i][j].count;
-
-
-
                 }
                 checkAllClear(grid);
-
 
             });
 
@@ -46,9 +61,12 @@ function renderBoard(numRows, numCols, grid, numMines) {
 
             trEl.append(tdEl);
 
+
         }
         boardEl.append(trEl);
+
     }
+
 }
 
 
@@ -66,7 +84,6 @@ const directions = [
     [1, 0],
     [1, 1],
 ]
-
 
 
 function initialize(numRows, numCols, numMines) {
@@ -186,10 +203,10 @@ function explode(grid, row, col, numRows, numCols) {
             if (cell.count === -1) {
                 cell.cellEl.classList.add('landmine');
             }
-
         }
     }
 }
+
 
 
 function checkAllClear(grid) {
@@ -220,32 +237,50 @@ function checkAllClear(grid) {
     return true;
 }
 
-let grid = initialize(9, 9, 16);
-renderBoard(9, 9, grid);
 
-/*
-var btns = document.getElementsByTagName('button');
-var cell = null;
-var ln = 0;
-var arr = [
-    [9, 9, 10],
-    [16, 16, 40],
-    [28, 28, 99]
-];
-for (let i = 0; i < btns.length - 1; i++) {
-    btns[i].onclick = function() {
-        btns[ln].className = ' ';
-        this.className = 'active';
-        cell = new renderBoard(arr[i][0], arr[i][1], arr[i][2]);
-        cell.init();
-        ln = i;
+
+
+var Btn = function() {
+    var level = document.querySelectorAll('.choice-level')
+    for (var i = 0; i < level.length; i++) {
+        level[i].addEventListener('click', function(event) {
+            var level = event.target.innerHTML
+            if (level === '初级') {
+                numRows = 9
+                numCols = 9
+                numMines = 10
+                initialize(numRows, numCols, numMines)
+            } else if (level === '中级') {
+                numRows = 16
+                numCols = 16
+                numMines = 40
+                initialize(numRows, numCols, numMines)
+            } else if (level === '高级') {
+                numRows = 16
+                numCols = 30
+                numMines = 99
+                initialize(numRows, numCols, numMines)
+            }
+        })
     }
+    var restart = document.querySelector('.restart')
+    restart.addEventListener('click', function(event) {
+        initialize(numRows, numCols, numMines)
+    })
 }
-btns[0].onclick();
-btns[3].onclick = function() {
-    for (var i = 0; i < btns.length - 1; i++) {
-        if (btns[i].className == 'active') {
-            btns[i].onclick();
-        }
-    }
-}*/
+Btn();
+
+// 6，初始数据
+// zz 用来确定是否已经点到地雷
+var zz = 0;
+var numRows = 16;
+var numCols = 16;
+var numMines = 40;
+let grid = initialize(numRows, numCols, numMines);
+renderBoard(numRows, numCols, grid);
+
+
+
+
+//let grid = initialize(9, 9, 16);
+//renderBoard(9, 9, grid);

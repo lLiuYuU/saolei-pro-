@@ -9,10 +9,6 @@ function renderBoard(numRows, numCols, grid, numMines) {
             grid[i][j].cellEl = cellEl;
 
 
-
-
-
-
             cellEl.addEventListener("click", (e) => {
                 if (grid[i][j].count === -1) {
                     explode(grid, i, j, numRows, numCols)
@@ -27,7 +23,11 @@ function renderBoard(numRows, numCols, grid, numMines) {
                     grid[i][j].cellEl.innerText = grid[i][j].count;
                     changecolor(grid, i, j);
                 }
+                checkAllClear(grid);
 
+                if (checkAllClear(grid) == true) {
+                    alert("You win");
+                }
             });
             document.oncontextmenu = function(e) {
                 return false;
@@ -234,7 +234,7 @@ function checkAllClear(grid) {
 
 function easy() {
     document.getElementById('board').innerHTML = "";
-    let grid = initialize(9, 9, 9);
+    let grid = initialize(9, 9, 10);
     renderBoard(9, 9, grid);
 
 }

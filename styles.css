@@ -1,0 +1,89 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.board {
+    background-color: #eee;
+}
+
+.header {
+    background-color: #ccc;
+}
+
+.game-pane {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+.game-pane a {
+    padding: 5px 15px;
+    background-color: #4ad8eb;
+    color: #fff;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.title {
+    padding: 15px 15px;
+    background-color: #cfabab;
+    color: #fff;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    color: rgb(37, 2, 2);
+}
+
+.cell {
+    background-color: #ccc;
+    width: 1.5em;
+    height: 1.5em;
+    border-style: outset;
+    text-align: center;
+    user-select: none;
+}
+
+.clear {
+    border-style: solid;
+    border-color: #eee;
+    background-color: #eee;
+}
+
+.cell.landmine {
+    background-color: orange;
+    background: #ccc url(../扫雷/boom.png)no-repeat center;
+    background-size: cover;
+}
+
+.cell.landmine.exploded {
+    background-color: red;
+}
+
+.cell.landmine.success {
+    background-color: green;
+}
+
+.footer {
+    background-color: rgb(201, 223, 233);
+}
+
+td {
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+    border: 2px solid;
+    border-color: #fff #a1a1a1 #a1a1a1 #fff;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    color: cornflowerblue;
+    ;
+}

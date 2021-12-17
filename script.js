@@ -8,14 +8,11 @@ function renderBoard(numRows, numCols, grid, numMines) {
             cellEl.className = "cell";
             grid[i][j].cellEl = cellEl;
 
-            // if ( grid[i][j].count === -1) {
-            //     cellEl.innerText = "*";    
-            // } else {
-            //     cellEl.innerText = grid[i][j].count;
-            // }
-            this.parent.oncontextmenu = function() {
-                return false;
-            }
+
+
+
+
+
             cellEl.addEventListener("click", (e) => {
                 if (grid[i][j].count === -1) {
                     explode(grid, i, j, numRows, numCols)
@@ -30,8 +27,17 @@ function renderBoard(numRows, numCols, grid, numMines) {
                     grid[i][j].cellEl.innerText = grid[i][j].count;
                 }
 
-                checkAllClear(grid);
-                // cellEl.classList.add("clear");
+            });
+            document.oncontextmenu = function(e) {
+                return false;
+            }
+            cellEl.addEventListener("mousedown", (e) => {
+                if (e.button == 2 && grid[i][j].clear == false) {
+                    grid[i][j].cellEl.classList.add("flag");
+                } else if (e.button == 2) {
+                    grid[i][j].cellEl.classList.remove("flag");
+                    grid[i][j].flag = false;
+                }
             });
 
             let tdEl = document.createElement("td");
@@ -197,6 +203,7 @@ let grid3 = initialize(15, 15, 15);
 function easy() {
     document.getElementById('board').innerHTML = "";
     renderBoard(9, 9, grid);
+
 }
 
 function middle() {

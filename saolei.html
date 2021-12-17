@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+
 </head>
 
 <body background="../扫雷/6.jpg" style="background-size: 100% 100%;">
@@ -12,21 +13,18 @@
     <div class="game-pane">
         <table id="board" class="board">
             <header class="header">
-                <div class="title">大作业之扫雷升级版</div>
-                <br>
-                <div style="margin-top: o.8em;">
-                    <a class="button" href="javascript:easy ();">基础</a> &nbsp;
-                    <a href="javascript:middle ();">中级</a> &nbsp;
-                    <a href="javascript:difficult ();">高级</a>
+                <div class="title" style="text-align: center;">大作业之扫雷升级版</div>
+
+                <div style="text-align: center;" class="tips">
+                    <button type="button" onclick="easy()">初级</button>
+                    <button type="button" onclick="normal()">中级</button>
+                    <button type="button" onclick="hard()">高级</button>
                 </div>
-                <br>
+
+            </header>
         </table>
-
-        <div class="footer">
-            <span class="tips">左键扫雷<br>初级9颗雷 中级11颗雷 高级15颗雷</span>
-
-        </div>
-        </footer>
+    </div>
+    </footer>
     </div>
     <script src="script.js"></script>
 </body>

@@ -15,9 +15,14 @@ body {
     background-color: #ccc;
 }
 
+.header button {
+    background-color: rgb(162, 199, 201);
+    color: coral;
+}
+
 .game-pane {
     border-style: solid;
-    border-width: 1px;
+    border-width: 10px;
     border-color: #ccc;
     box-shadow: 2px 2px 2px #ccc;
 }
@@ -44,6 +49,9 @@ body {
     outline: none;
     cursor: pointer;
     color: rgb(37, 2, 2);
+    font-family: 仿宋;
+    font-size: large;
+    font-weight: bolder;
 }
 
 .cell {
@@ -91,4 +99,49 @@ td {
     font-weight: bold;
     color: cornflowerblue;
     ;
+}
+
+.cell.one {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.cell.two {
+    color: rgb(124, 131, 35);
+    font-weight: bold;
+}
+
+.cell.three {
+    color: rgb(255, 124, 16);
+    font-weight: bold;
+}
+
+.cell.four {
+    color: rgb(170, 68, 184);
+    font-weight: bold;
+}
+
+.cell.five {
+    color: rgb(27, 224, 60);
+    font-weight: bold;
+}
+
+.cell.six {
+    color: rgb(236, 161, 171);
+    font-weight: bold;
+}
+
+.cell.seven {
+    color: rgb(158, 230, 26);
+    font-weight: bold;
+}
+
+.cell.eight {
+    color: blue;
+    font-weight: bold;
+}
+
+.btn {
+    align-items: center;
+    color: blueviolet;
 }

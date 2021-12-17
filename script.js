@@ -25,6 +25,7 @@ function renderBoard(numRows, numCols, grid, numMines) {
                     grid[i][j].clear = true;
                     cellEl.classList.add("clear");
                     grid[i][j].cellEl.innerText = grid[i][j].count;
+                    changecolor(grid, i, j);
                 }
 
             });
@@ -49,6 +50,36 @@ function renderBoard(numRows, numCols, grid, numMines) {
     }
 }
 
+function changecolor(grid, i, j) {
+    switch (grid[i][j].count) {
+        case 1:
+            grid[i][j].cellEl.classList.add("one");
+            break;
+        case 2:
+            grid[i][j].cellEl.classList.add("two");
+            break;
+        case 3:
+            grid[i][j].cellEl.classList.add("three");
+            break;
+        case 4:
+            grid[i][j].cellEl.classList.add("four");
+            break;
+        case 5:
+            grid[i][j].cellEl.classList.add("five");
+            break;
+        case 6:
+            grid[i][j].cellEl.classList.add("six");
+            break;
+        case 7:
+            grid[i][j].cellEl.classList.add("seven");
+            break;
+        case 8:
+            grid[i][j].cellEl.classList.add("eight");
+            break;
+    }
+
+
+}
 const directions = [
     [-1, -1],
     [-1, 0],
@@ -143,6 +174,7 @@ function searchClearArea(grid, row, col, numRows, numCols) {
         if (!gridCell.clear) {
             gridCell.clear = true;
             gridCell.cellEl.classList.add("clear");
+            changecolor(grid, cellRow, cellCol);
             if (gridCell.count === 0) {
                 searchClearArea(grid, cellRow, cellCol, numRows, numCols);
             } else if (gridCell.count > 0) {
@@ -196,23 +228,27 @@ function checkAllClear(grid) {
 }
 
 
-let grid = initialize(9, 9, 9);
-let grid2 = initialize(11, 11, 11);
-let grid3 = initialize(15, 15, 15);
+
+
+
 
 function easy() {
     document.getElementById('board').innerHTML = "";
+    let grid = initialize(9, 9, 9);
     renderBoard(9, 9, grid);
 
 }
 
-function middle() {
+function normal() {
     document.getElementById('board').innerHTML = "";
-    renderBoard(11, 11, grid2);
+    let grid = initialize(11, 11, 25);
+    renderBoard(11, 11, grid);
 }
 
-function difficult() {
+function hard() {
     document.getElementById('board').innerHTML = "";
-    renderBoard(15, 15, grid3);
+    let grid = initialize(15, 15, 30);
+    renderBoard(15, 15, grid);
 }
+let grid = initialize(9, 9, 9);
 renderBoard(9, 9, grid);

@@ -22,6 +22,11 @@ body {
     box-shadow: 2px 2px 2px #ccc;
 }
 
+.flag {
+    background: #ccc url(../扫雷/flag.png) no-repeat;
+    background-size: cover;
+}
+
 .game-pane a {
     padding: 5px 15px;
     background-color: #4ad8eb;

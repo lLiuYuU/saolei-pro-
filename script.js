@@ -12,7 +12,8 @@ function renderBoard(numRows, numCols, grid, numMines) {
             cellEl.addEventListener("click", (e) => {
                 if (grid[i][j].count === -1) {
                     explode(grid, i, j, numRows, numCols)
-                    return alert("游戏结束！,点击查看结果");
+                    return alert("游戏结束！ YOU LOSS");
+
                 }
 
                 if (grid[i][j].count === 0) {
@@ -26,7 +27,7 @@ function renderBoard(numRows, numCols, grid, numMines) {
                 checkAllClear(grid);
 
                 if (checkAllClear(grid) == true) {
-                    alert("You win");
+                    alert("YOU WIN");
                 }
             });
             document.oncontextmenu = function(e) {

@@ -28,13 +28,13 @@ body {
 }
 
 .flag {
-    background: #ccc url(../扫雷/flag.png) no-repeat;
+    background: #ccc url(../扫雷/src=http___www.sucaitianxia.net_png_UploadFiles_6130_200807_20080702001842866.png&refer=http___www.sucaitianxia.png) no-repeat;
     background-size: cover;
 }
 
 .game-pane a {
     padding: 5px 15px;
-    background-color: #4ad8eb;
+    background-color: #4ad8eb6c;
     color: #fff;
     border-radius: 3px;
     outline: none;
@@ -43,7 +43,7 @@ body {
 
 .title {
     padding: 15px 15px;
-    background-color: #cfabab;
+    background-color: #c6f0ee59;
     color: #fff;
     border-radius: 3px;
     outline: none;
@@ -67,11 +67,13 @@ body {
     border-style: solid;
     border-color: #eee;
     background-color: #eee;
+    background: #ccc url(../扫雷/src=http___img95.699pic.com_xsj_01_j9_8e.jpg!_fw_700_watermark_url_L3hzai93YXRlcl9kZXRhaWwyLnBuZw_align_southeast&refer=http___img95.699pic.png) no-repeat;
+    background-size: cover;
 }
 
 .cell.landmine {
     background-color: orange;
-    background: #ccc url(../扫雷/boom.png)no-repeat center;
+    background: #ccc url(../扫雷/u=545687781\,1855493139&fm=26&fmt=auto.png) no-repeat center;
     background-size: cover;
 }
 
